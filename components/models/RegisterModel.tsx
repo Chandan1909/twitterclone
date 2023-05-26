@@ -4,6 +4,9 @@ import Model from "../Model";
 import useRegisterModel from "@/hooks/useRegisterModel";
 import LoginModel from '@/components/models/LoginModel';
 import useLoginModel from "@/hooks/useLoginModel";
+import { signIn } from "next-auth/react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const RegisterModel =()=>{
     const loginModel= useLoginModel();
@@ -23,20 +26,26 @@ const RegisterModel =()=>{
         loginModel.onOpen();
     },[isLoading,registerModel,loginModel])
 
-    const onSubmit = useCallback(()=>{
+    const onSubmit = useCallback(async()=>{
         try {
 
             setIsLoading(true);
 
+            await axios.post('/api/register',{email,password,name,userName})
+
+            toast.success("Account created");
+
+            signIn('credentials',  {email,password});
 
             registerModel.onClose();
             
         } catch (error) {
             console.log(error);
+            toast.error("Something went wrong");
         }finally{
             setIsLoading(false);
         }
-    },[registerModel]);    
+    },[registerModel,email,password,name,userName]);    
 
 
     const bodyContent = (
