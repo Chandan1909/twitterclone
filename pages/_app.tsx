@@ -5,10 +5,12 @@ import Layout from '@/components/Layout';
 import type { AppProps } from 'next/app';
 import LoginModel from '@/components/models/LoginModel';
 import RegisterModel from '../components/models/RegisterModel';
+import { Session } from 'next-auth'; 
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps: { session, ...pageProps },
+}: AppProps<{ session: Session }>) {
   return (
-    <SessionProvider session={pageProps.session}>
+    <SessionProvider session={session}>
       <Toaster/>
       <RegisterModel/>
       <LoginModel/>
