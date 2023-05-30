@@ -53,7 +53,7 @@ const RegisterModel =()=>{
             <Input placeholder="Email" onChange={(e)=>setEmail(e.target.value)} value={email} disabled={isLoading}  />
             <Input placeholder="Name" onChange={(e)=>setName(e.target.value)} value={name} disabled={isLoading}  />
             <Input placeholder="Username" onChange={(e)=>setUserName(e.target.value)} value={userName} disabled={isLoading}  />
-            <Input placeholder="Password" onChange={(e)=>setPassword(e.target.value)} value={password} disabled={isLoading}  />
+            <Input placeholder="Password" onChange={(e)=>setPassword(e.target.value)} value={password} disabled={isLoading} type='password' />
         </div>
     )
 
