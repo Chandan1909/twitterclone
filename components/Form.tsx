@@ -11,7 +11,7 @@ import Avatar from './Avatar';
 interface Formprops{
     placeholder:string;
     isComment?:boolean;
-    postId:string;
+    postId?:string;
 }
 
 const Form:React.FC<Formprops> = ({placeholder,isComment,postId})=>{
